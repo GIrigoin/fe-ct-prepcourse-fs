@@ -33,10 +33,14 @@ function sumarArray(arrayOfNumbers, cb) {
    // Este resultado debes pasárselo como argumento al callback recibido.
    // [NOTA]: no debes reotrnar nada.
    // Tu código:
-   var suma = 0;
-   for (var i = 0; i < arrayOfNumbers.length; i++){
-      suma = suma + arrayOfNumbers[i];
-   }
+   // var suma = 0;
+   // for (var i = 0; i < arrayOfNumbers.length; i++){
+   //    suma = suma + arrayOfNumbers[i];
+   // }
+   // cb(suma);
+
+   var suma = arrayOfNumbers.reduce(function (sum, actual) {return(sum + actual);});
+
    cb(suma);
 }
 
@@ -45,11 +49,8 @@ function forEach(array, cb) {
    // Debes iterar sobre el arreglo, y por cada elemento ejecutar el callback.
    // Debes pasarle el elemento como argumento al callback.
    // Tu código:
-   for (var i = 0; i < array.length; i++) {
-      
-      cb(array[i]);
-
-   } 
+   // 
+   array.forEach(function (x) { return cb(x) });
 }
 
 function map(array, cb) {
@@ -57,11 +58,13 @@ function map(array, cb) {
    // Tiene que guardar el resultado devuelto por el callback en cada elemento dentro de un nuevo arreglo.
    // Retorna el nuevo arreglo.
    // Tu código:
-   var interno = [];
-   for (i = 0; i < array.length; i++){
-      interno.push(cb(array[i]));
-   }
+   var interno = array.map( function (x) { return cb(x) } );
+   // for (i = 0; i < array.length; i++){
+   //    interno.push(cb(array[i]));
+   // }
    return(interno);
+   
+
 }
 
 function filter(arrayOfStrings) {
@@ -69,14 +72,19 @@ function filter(arrayOfStrings) {
    // Luego retorna un nuevo arreglo con estos elementos.
    // Tu código:
    var nuevoArray=[];
-   for (var i = 0; i < arrayOfStrings.length; i++){
-      if (arrayOfStrings[i][0] == 'a') {
 
-         nuevoArray.push(arrayOfStrings[i]);
+   arrayOfStrings.forEach(function(x) {
+      if (x.charAt(0) == 'a') {nuevoArray.push(x)};
+   })
+   // for (var i = 0; i < arrayOfStrings.length; i++){
+   //    if (arrayOfStrings[i][0] == 'a') {
 
-      }
-   }
+   //       nuevoArray.push(arrayOfStrings[i]);
+
+   //    }
+   // }
    return(nuevoArray);
+
 }
 
 /*⚠️ NO MODIFIQUES NADA DEBAJO DE ESTO ⚠️*/
